@@ -11,14 +11,6 @@ const createEvents = await prisma.userEvents.createMany({
   },
   {
     userId: 1,
-    eventAPIid: 'KovZpZAEvtFA'
-  },
-  {
-    userId: 1,
-    eventAPIid: 'K8vZ917_sF7'
-  },
-  {
-    userId: 1,
     eventAPIid: 'rZ7HnEZ1A3aOaA'
   },
   ]

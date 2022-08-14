@@ -15,17 +15,35 @@ cloudinary.config({
 
 
 
+
+
 const songFinderRouter = Router();
+// let publicId = '';
 // const audioId = '';
 
+songFinderRouter.get('/', (req, res) => {
+  const {artistName, song} = req.query;
+
+  axios.get(`https://api.lyrics.ovh/v1/${artistName}/${song}`)
+    .then((data) => {
+      // console.log(data.data.lyrics.split('\n'));
+      res.status(200).send(data.data.lyrics.split('\n'));
+    })
+    .catch((err) => {
+      res.sendStatus(500);
+    });
+});
+
 songFinderRouter.post('/', async (req, res) => {
+  // cloudinary.uploader.destroy(publicId, (error, result) => { console.log(result, error); });
   try {
     // console.log(req.body.data);
     const fileStr = req.body.data;
     await cloudinary.uploader.upload(fileStr, {resource_type: 'video', upload_preset: 'VibeSocietyAudio', return_delete_token: 1})
       .then((uploadResponse) => {
+        // publicId = uploadResponse.public_id;
         // audioId = uploadResponse.asset_id;
-        console.log(uploadResponse);
+        // console.log(uploadResponse);
         axios.post('https://api.audd.io/', {
 
           'api_token': process.env.AUDD_TOKEN,

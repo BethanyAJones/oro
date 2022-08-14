@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Router } from 'express';
 import { inspect } from 'node:util';
+import prisma from '../database/db';
 require('dotenv').config();
 
 const eventListingsRouter = Router();
@@ -52,13 +53,53 @@ eventListingsRouter.get('/list', (req, res) => {
 
         return newDataObj;
       });
-      res.send({
-        events
-      });
-      res.status(200);
+      res.status(200).send({events})
     })
     .catch(err => console.error(err));
 });
+
+eventListingsRouter.post('/list/pins', (req, res) => {
+  // console.log('POST REQ', req.body, 'POST RES', res)
+  const pinObj = req.body;
+  prisma.userEvents.create({
+    data: pinObj
+  }).then((data) => {
+    res.send(data).status(201);
+  })
+  .catch(err => {
+    console.error('BACKEND POST REQ ERR', err);
+    res.sendStatus(500);
+  })
+})
+
+eventListingsRouter.get('/list/pins', (req, res) => {
+  prisma.userEvents.findMany()
+    .then(eventData => {
+      res.send(eventData).status(200);
+    })
+    .catch(err => {
+      console.error(err)
+      res.status(500).end()
+    })
+
+eventListingsRouter.delete('/list/pins', (req, res) => {
+  const { eventAPIid } = req.body
+  prisma.userEvents.deleteMany({
+    where: {
+      eventAPIid:{
+        contains: eventAPIid
+      }
+    }
+  })
+  .then(results => {
+    res.sendStatus(200);
+  })
+  .catch(err => {
+    res.sendStatus(500);
+  })
+})
+
+})
 
 
 export default eventListingsRouter;

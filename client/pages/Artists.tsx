@@ -21,7 +21,7 @@ const Artists = () => {
         <Grid container spacing={2}>
           {favorites.map((artObj) => {
             return (
-              <Grid item key={artObj.id} xs={12} sm={4} md={4}>
+              <Grid item key={artObj.id} xs={12} sm={4} md={2}>
                 <ArtistInfoCard artistProps={artObj} key={artObj.id}/>
               </Grid>
             );

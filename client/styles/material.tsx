@@ -37,6 +37,10 @@ import localActivityIcon from '@mui/icons-material/LocalActivity';
 import calendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import infoIcon from '@mui/icons-material/Info';
 import descriptionIcon from '@mui/icons-material/Description';
+import arrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
+import muiAccordion from '@mui/material/Accordion';
+import muiAccordionSummary from '@mui/material/AccordionSummary';
+import muiAccordionDetails from '@mui/material/AccordionDetails';
 export const Item = styled(paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#212121',
   ...theme.typography.body2,
@@ -83,3 +87,7 @@ export const LocalActivityIcon = localActivityIcon;
 export const CalendarMonthIcon = calendarMonthIcon;
 export const InfoIcon = infoIcon;
 export const DescriptionIcon = descriptionIcon;
+export const ArrowForwardIosSharpIcon = arrowForwardIosSharpIcon;
+export const MuiAccordion = muiAccordion;
+export const MuiAccordionSummary = muiAccordionSummary;
+export const MuiAccordionDetails = muiAccordionDetails;
