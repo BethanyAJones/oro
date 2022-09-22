@@ -56,13 +56,13 @@ const Contacts = ({changeChat, currentContact}) => {
 
 if(currentContact === undefined){
   return (
-  <Grid maxWidth='100%' container>
+  <Grid maxWidth='100%' overflow='auto' maxHeight='70vh'>
       {
         userContacts.map((contact, index) => {
           return (
-            <Grid xs={12} mb='10px'>
+            <Grid xs={12} mb='10px' pl='0px'>
               <ListItemButton
-              sx={{ align:'center' }}
+              sx={{ align:'left', pl:'0px' }}
               key={'listitembutton' + index}
               alignItems="flex-start"
               selected={selectedIndex === index}
@@ -71,8 +71,8 @@ if(currentContact === undefined){
                 changeCurrentChat(index, contact);
               } }
             >
-              <Grid xs={1} sx={{mr:'30px'}}>
-              {isMobile ? <Avatar key={'avatar' + index} src={contact.profileURL} sx={{mr:'5px'}}/> : <Avatar key={'avatar' + index} src={contact.profileURL} sx={{mr:'30px'}}/> }
+              <Grid xs={1} sx={{mr:'30px', pl:'0px'}}>
+              {isMobile ? <Avatar key={'avatar' + index} src={contact.profileURL} sx={{mr:'5px', pl:'0px'}}/> : <Avatar key={'avatar' + index} src={contact.profileURL} sx={{mr:'30px', pl:'0px'}}/> }
                 </Grid>
                 <Grid xs={8}>
               {isMobile ? <ListItemText
